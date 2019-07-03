@@ -1,0 +1,49 @@
+package systemsecurity;
+
+import java.util.Base64;
+import java.util.Scanner;
+import static systemsecurity.Systemsecurity.getMD5EncryptedValue;
+
+/**
+ *
+ * @author PC
+ */
+public class hashing {
+    
+    public static void main(String[] args) 
+    { 
+        Scanner sc = new Scanner(System.in);
+        String sample,new_val="",new_hash;
+        System.out.println("Enter Hash Value : ");
+        sample=sc.next();
+        int flag=0;
+        for (int i=1000; i<10000;i++) 
+        {
+            String BasicBase64format=" ";
+            String sam=String.valueOf(i);
+            BasicBase64format 
+                = Base64.getEncoder().encodeToString(sample.getBytes()); 
+            
+            if(sample.equals(BasicBase64format))
+            {                
+                flag=1;
+                new_val=sam;
+                break;
+            }
+            
+        }
+        if(flag==1)
+        {
+            System.out.println("Orginal Value is: "+new_val);
+        }
+        else
+        {
+            new_hash=getMD5EncryptedValue("0000");
+            if(sample.equals(new_hash))
+            {                
+                System.out.println("Orginal Value is: 0000");
+            }
+        }
+    } 
+    
+}
